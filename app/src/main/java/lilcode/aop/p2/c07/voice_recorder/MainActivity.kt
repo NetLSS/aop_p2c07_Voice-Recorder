@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             field = value // 실제 프로퍼티에 대입
             recordButton.updateIconWithState(value)
         }
-    
+
     private var recorder: MediaRecorder? = null // 사용 하지 않을 때는 메모리해제 및  null 처리
     private var player: MediaPlayer? = null
 
@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         requestAudioPermission()
         initViews()
+        bindViews()
     }
 
     override fun onRequestPermissionsResult(
@@ -63,6 +64,25 @@ class MainActivity : AppCompatActivity() {
         recordButton.updateIconWithState(state)
     }
 
+    private fun bindViews() {
+        recordButton.setOnClickListener {
+            when (state) {
+                State.BEFORE_RECORDING -> {
+                    startRecoding()
+                }
+                State.ON_RECORDING -> {
+                    stopRecording()
+                }
+                State.AFTER_RECORDING -> {
+                    startPlaying()
+                }
+                State.ON_PLAYING -> {
+                    stopPlaying()
+                }
+            }
+        }
+    }
+
     private fun startRecoding() {
         // 녹음 시작 시 초기화
         recorder = MediaRecorder()
@@ -86,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         state = State.AFTER_RECORDING
     }
 
-    private fun startPlay() {
+    private fun startPlaying() {
         // MediaPlayer
         player = MediaPlayer()
             .apply {
@@ -97,7 +117,7 @@ class MainActivity : AppCompatActivity() {
         state = State.ON_PLAYING
     }
 
-    private fun stopPlay() {
+    private fun stopPlaying() {
         player?.release()
         player = null
         state = State.AFTER_RECORDING
