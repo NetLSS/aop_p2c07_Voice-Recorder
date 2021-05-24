@@ -17,7 +17,10 @@
 ## 사용기술
 
 - Request runtime permissions (마이크 권한)
-- CustomView (음성 시각화)
+- CustomView (음성 시각화) ([link](https://developer.android.com/training/custom-views/custom-drawing?hl=en))
+    - Canvas : 무엇을 그릴지 (onDraw 호출 전 미리 생성)
+    - Paint : 어떻게 그릴지
+    - onSizeChanged() : 그릴 영역 체크
 - MediaRecorder (녹음)
 - [MediaPlayer](https://developer.android.com/reference/android/media/MediaPlayer) (재생)
 
