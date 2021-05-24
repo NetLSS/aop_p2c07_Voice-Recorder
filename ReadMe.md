@@ -19,6 +19,7 @@
 - Request runtime permissions (마이크 권한)
 - CustomView (음성 시각화)
 - MediaRecorder (녹음)
+- [MediaPlayer](https://developer.android.com/reference/android/media/MediaPlayer) (재생)
 
 ## 상태
 
