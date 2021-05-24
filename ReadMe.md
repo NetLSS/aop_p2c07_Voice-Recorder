@@ -29,6 +29,9 @@
 <img src="https://developer.android.com/images/training/permissions/workflow-runtime.svg" />
 - Android에서 런타임 권한을 선언하고 요청하는 워크플로를 보여 주는 다이어그램
 
+<img src="https://developer.android.com/images/mediarecorder_state_diagram.gif"/>
+- Used to record audio and video. The recording control is based on a simple state machine
+
 ## 결과화면
 |Screenshot1|Screenshot2|
 |---|---|
