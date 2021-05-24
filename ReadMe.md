@@ -20,6 +20,10 @@
 - CustomView (음성 시각화)
 - MediaRecorder (녹음)
 
+## 상태
+
+녹음 전 - 녹음 중 - 녹음 후 - 재생중
+
 ## 결과화면
 |Screenshot1|Screenshot2|
 |---|---|
