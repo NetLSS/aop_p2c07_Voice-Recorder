@@ -2,6 +2,7 @@ package lilcode.aop.p2.c07.voice_recorder
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.media.MediaRecorder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
     private var state = State.BEFORE_RECORDING
     private var recorder: MediaRecorder? = null // 사용 하지 않을 때는 메모리해제 및  null 처리
+    private var player: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +77,21 @@ class MainActivity : AppCompatActivity() {
             release()
         }
         recorder = null
+    }
+
+    private fun startPlay() {
+        // MediaPlayer
+        player = MediaPlayer()
+            .apply {
+                setDataSource(recordingFilePath)
+                prepare() // 재생 할 수 있는 상태 (큰 파일 또는 네트워크로 가져올 때는 prepareAsync() )
+            }
+        player?.start() // 재생
+    }
+
+    private fun stopPlay(){
+        player?.release()
+        player = null
     }
 
     companion object {
