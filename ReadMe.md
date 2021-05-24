@@ -24,6 +24,11 @@
 
 녹음 전 - 녹음 중 - 녹음 후 - 재생중
 
+## 기타
+
+<img src="https://developer.android.com/images/training/permissions/workflow-runtime.svg" />
+- Android에서 런타임 권한을 선언하고 요청하는 워크플로를 보여 주는 다이어그램
+
 ## 결과화면
 |Screenshot1|Screenshot2|
 |---|---|
