@@ -21,6 +21,11 @@ class MainActivity : AppCompatActivity() {
         "${externalCacheDir?.absolutePath}/recording.3gp"
     }
     private var state = State.BEFORE_RECORDING
+        set(value) { // setter 설정
+            field = value // 실제 프로퍼티에 대입
+            recordButton.updateIconWithState(value)
+        }
+    
     private var recorder: MediaRecorder? = null // 사용 하지 않을 때는 메모리해제 및  null 처리
     private var player: MediaPlayer? = null
 
@@ -69,6 +74,7 @@ class MainActivity : AppCompatActivity() {
                 prepare()
             }
         recorder?.start()
+        state = State.ON_RECORDING
     }
 
     private fun stopRecording() {
@@ -77,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             release()
         }
         recorder = null
+        state = State.AFTER_RECORDING
     }
 
     private fun startPlay() {
@@ -87,11 +94,13 @@ class MainActivity : AppCompatActivity() {
                 prepare() // 재생 할 수 있는 상태 (큰 파일 또는 네트워크로 가져올 때는 prepareAsync() )
             }
         player?.start() // 재생
+        state = State.ON_PLAYING
     }
 
-    private fun stopPlay(){
+    private fun stopPlay() {
         player?.release()
         player = null
+        state = State.AFTER_RECORDING
     }
 
     companion object {
