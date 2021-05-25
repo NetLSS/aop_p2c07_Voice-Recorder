@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                 prepare()
             }
         recorder?.start()
-        soundVisualizerView.startVisualizing()
+        soundVisualizerView.startVisualizing(false)
         state = State.ON_RECORDING
     }
 
@@ -142,12 +142,16 @@ class MainActivity : AppCompatActivity() {
                 prepare() // 재생 할 수 있는 상태 (큰 파일 또는 네트워크로 가져올 때는 prepareAsync() )
             }
         player?.start() // 재생
+        soundVisualizerView.startVisualizing(true)
+
         state = State.ON_PLAYING
     }
 
     private fun stopPlaying() {
         player?.release()
         player = null
+        soundVisualizerView.stopVisualizing()
+
         state = State.AFTER_RECORDING
     }
 
