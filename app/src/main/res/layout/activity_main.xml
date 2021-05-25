@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="@+id/recordButton"
         tools:ignore="HardcodedText" />
 
-    <TextView
+    <lilcode.aop.p2.c07.voice_recorder.CountUpView
         android:id="@+id/recordTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

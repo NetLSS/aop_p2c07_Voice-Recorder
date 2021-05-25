@@ -14,6 +14,10 @@ class MainActivity : AppCompatActivity() {
         findViewById(R.id.soundVisualizerView)
     }
 
+    private val recordTimeTextView: CountUpView by lazy {
+        findViewById(R.id.recordTimeTextView)
+    }
+
     private val resetButton: Button by lazy {
         findViewById(R.id.resetButton)
     }
@@ -120,6 +124,7 @@ class MainActivity : AppCompatActivity() {
                 prepare()
             }
         recorder?.start()
+        recordTimeTextView.startCountup()
         soundVisualizerView.startVisualizing(false)
         state = State.ON_RECORDING
     }
@@ -131,6 +136,7 @@ class MainActivity : AppCompatActivity() {
         }
         recorder = null
         soundVisualizerView.stopVisualizing()
+        recordTimeTextView.stopCountup()
         state = State.AFTER_RECORDING
     }
 
@@ -142,6 +148,8 @@ class MainActivity : AppCompatActivity() {
                 prepare() // 재생 할 수 있는 상태 (큰 파일 또는 네트워크로 가져올 때는 prepareAsync() )
             }
         player?.start() // 재생
+        recordTimeTextView.startCountup()
+
         soundVisualizerView.startVisualizing(true)
 
         state = State.ON_PLAYING
@@ -151,6 +159,7 @@ class MainActivity : AppCompatActivity() {
         player?.release()
         player = null
         soundVisualizerView.stopVisualizing()
+        recordTimeTextView.stopCountup()
 
         state = State.AFTER_RECORDING
     }
