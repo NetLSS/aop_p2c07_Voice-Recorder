@@ -8,13 +8,13 @@
 
     <lilcode.aop.p2.c07.voice_recorder.SoundVisualizerView
         android:id="@+id/soundVisualizerView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/recordTimeTextView"
-        android:layout_marginBottom="10dp"
         android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/recordTimeTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/resetButton"
@@ -42,6 +42,9 @@
     <lilcode.aop.p2.c07.voice_recorder.RecordButton
         android:id="@+id/recordButton"
         android:layout_width="100dp"
+        tools:src="@drawable/ic_recorde"
+        android:scaleType="fitCenter"
+        android:padding="25dp"
         android:layout_height="100dp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
