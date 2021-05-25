@@ -120,6 +120,7 @@ class MainActivity : AppCompatActivity() {
                 prepare()
             }
         recorder?.start()
+        soundVisualizerView.startVisualizing()
         state = State.ON_RECORDING
     }
 
@@ -129,6 +130,7 @@ class MainActivity : AppCompatActivity() {
             release()
         }
         recorder = null
+        soundVisualizerView.stopVisualizing()
         state = State.AFTER_RECORDING
     }
 
