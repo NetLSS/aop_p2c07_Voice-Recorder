@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:text="00:00"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/recordButton"
         app:layout_constraintLeft_toLeftOf="@id/recordButton"
         app:layout_constraintRight_toRightOf="@id/recordButton"
