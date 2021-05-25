@@ -104,6 +104,7 @@ class SoundVisualizerView(
 
     fun stopVisualizing() {
         // 반복 호출 제거
+        replayingPosition = 0 // 구간 초기화
         handler?.removeCallbacks(visualizeRepeatAction)
     }
 
