@@ -150,6 +150,13 @@ class MainActivity : AppCompatActivity() {
                 setDataSource(recordingFilePath)
                 prepare() // 재생 할 수 있는 상태 (큰 파일 또는 네트워크로 가져올 때는 prepareAsync() )
             }
+
+        // 전부 재생 했을 때
+        player?.setOnCompletionListener {
+            stopPlaying()
+            state = State.AFTER_RECORDING
+        }
+
         player?.start() // 재생
         recordTimeTextView.startCountup()
 
