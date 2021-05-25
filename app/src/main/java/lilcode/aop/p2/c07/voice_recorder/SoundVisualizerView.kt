@@ -11,17 +11,37 @@ class SoundVisualizerView(
     context: Context,
     attributeSet: AttributeSet? = null
 ) : View(context, attributeSet) {
-
+    
+    // MainActivity 에서 콜백함수 지정
+    var onRequestCurrentAmplitude: (() -> Int)? = null
+    
     // 계단화 방지 플레그 적용
-    val amplitudePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+    private val amplitudePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = context.getColor(R.color.purple_500)
         strokeWidth = LINE_WIDTH
         strokeCap = Paint.Cap.ROUND // 라인의 양 끄투머리 동그랗게
     }
 
-    var drawingWidth: Int = 0
-    var drawingHeight: Int = 0
-    var drawingAmplitudes: List<Int> = (0..10).map{ Random.nextInt(Short.MAX_VALUE.toInt())}
+    private var drawingWidth: Int = 0
+    private var drawingHeight: Int = 0
+    private var drawingAmplitudes: List<Int> = emptyList()
+
+    
+    
+    // 반복적인 드로우 처리
+    private val visualizeRepeatAction: Runnable = object : Runnable {
+        override fun run() {
+            // Amplitude를 가져오고, Draw를 요청
+            
+            // Amplitude 값 가져오기
+            val currentAmplitude = onRequestCurrentAmplitude?.invoke() ?: 0
+            // 오른 쪽 부터 순차적으로 그리기
+            drawingAmplitudes = listOf(currentAmplitude) + drawingAmplitudes
+            invalidate() // 드로잉 처리
+
+            handler?.postDelayed(this, ACTION_INTERVAL)
+        }
+    }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -62,6 +82,16 @@ class SoundVisualizerView(
             )
         }
     }
+    
+    fun startVisualizing(){
+        // 반복 호출 하기 위해 post
+        handler?.post(visualizeRepeatAction)
+    }
+    
+    fun stopVisualizing(){
+        // 반복 호출 제거
+        handler?.removeCallbacks(visualizeRepeatAction)
+    }
 
     // companion object(동반자 객체) = static 비슷 한 개념
     companion object {
@@ -70,5 +100,7 @@ class SoundVisualizerView(
 
         // 오디오 레코더의 get max amplitude(진폭, 볼륨) 음성의 최대값의 short 타입 최대값임.
         private const val MAX_AMPLITUDE = Short.MAX_VALUE.toFloat() // Float로 미리 타입 변환
+
+        private const val ACTION_INTERVAL = 20L // 20밀리초
     }
 }
