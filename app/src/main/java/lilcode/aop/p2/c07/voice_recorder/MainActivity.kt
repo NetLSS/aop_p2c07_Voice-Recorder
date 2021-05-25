@@ -105,6 +105,9 @@ class MainActivity : AppCompatActivity() {
 
         resetButton.setOnClickListener {
             stopPlaying()
+            // clear
+            soundVisualizerView.clearVisualization()
+            recordTimeTextView.clearCountTime()
             state = State.BEFORE_RECORDING
         }
     }

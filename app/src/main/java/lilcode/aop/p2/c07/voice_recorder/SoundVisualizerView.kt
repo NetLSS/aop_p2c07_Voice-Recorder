@@ -107,6 +107,11 @@ class SoundVisualizerView(
         handler?.removeCallbacks(visualizeRepeatAction)
     }
 
+    fun clearVisualization() {
+        drawingAmplitudes = emptyList()
+        invalidate()
+    }
+
     // companion object(동반자 객체) = static 비슷 한 개념
     companion object {
         private const val LINE_WIDTH = 10F
