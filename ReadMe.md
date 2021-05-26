@@ -1,3 +1,5 @@
+보다 자세한 내용을 저의 [블로그 포스터](https://whyprogrammer.tistory.com/584)에서 확인할 수 있습니다.
+
 # 녹음기 어플
 
 ## 목차
